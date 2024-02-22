@@ -85,6 +85,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+<!--					Used to generate the docker image via buildpacks -->
+					<image>
+						<name>nitansshujain/${project.artifactId}:s4</name>
+					</image>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -93,6 +97,19 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+			<!--			Using Google jib to build docker image-->
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.0</version>
+				<configuration>
+					<to>
+						<image>nitansshujain/${project.artifactId}:s4</image>
+					</to>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
